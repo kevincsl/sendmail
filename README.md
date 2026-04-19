@@ -231,3 +231,9 @@ A: 使用 `-fn` 參數（CLI）、`"from_name"` 欄位（JSON），或在 `.env`
 
 **Q: 批次寄送支援範本變數嗎？**
 A: 支援。CSV 中任何非預設欄位都會做為 vars，結合 JSON 中的 vars 一起替換。
+
+---
+
+## 授權
+
+MIT License - Copyright (c) 2026 Chi-Hsien Lin
