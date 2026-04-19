@@ -1,0 +1,3 @@
+to,subject,vars
+kevincsl@gmail.com,Hello {{name}},{"name":"Kevin"}
+kevin@mirai.tw,Hi {{name}},{"name":"Mirai"}

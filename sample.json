@@ -1,0 +1,10 @@
+{
+  "to": "kevin@whsh.tc.edu.tw",
+  "cc": [],
+  "bcc": [],
+  "attachments": ["taiwan.jpg"],
+  "subject": "JSON 測試郵件",
+  "body": "",
+  "body_file": "test.html",
+  "format": "html"
+}
