@@ -234,6 +234,68 @@ A: 支援。CSV 中任何非預設欄位都會做為 vars，結合 JSON 中的 v
 
 ---
 
+## MCP 模式
+
+將 sendmail 作為 MCP (Model Context Protocol) 工具使用，讓 AI 助理（Claude、Codex）可以直接幫你寄信。
+
+### 安裝 MCP Server
+
+```bash
+pip install -r requirements.txt
+```
+
+### 設定 Claude Code
+
+在 `~/.claude/mcp-settings.json` 加入：
+
+```json
+{
+  "mcpServers": {
+    "sendmail": {
+      "command": "python",
+      "args": ["/path/to/sendmail/sendmail_mcp/server.py"]
+    }
+  }
+}
+```
+
+### 使用方式
+
+當你對 Claude 說「幫我寄信」時，MCP 工具會被呼叫：
+
+```
+使用者：幫我寄信到 kevin@mail.com，主旨是 Hello，內容是測試
+AI 就會自動呼叫 sendmail tool：
+{
+  "to": "kevin@mail.com",
+  "subject": "Hello",
+  "body": "測試"
+}
+```
+
+### 可用的 Tool 參數
+
+| 參數 | 類型 | 說明 |
+|------|------|------|
+| `to` | string | 收件者 email（必填） |
+| `subject` | string | 主旨（必填） |
+| `body` | string | 內文（必填） |
+| `format` | string | `plain` 或 `html` |
+| `cc` | array | CC 陣列 |
+| `bcc` | array | BCC 陣列 |
+| `attachments` | array | 附件路徑陣列 |
+| `body_file` | string | 內文檔案路徑 |
+| `reply_to` | string | 回覆地址 |
+| `from_name` | string | 寄件者顯示名稱 |
+| `vars` | object | 範本變數 |
+
+### 傳輸方式
+
+- **stdio**（預設）：給 Claude Code 終端機用
+- **sse**：給網頁應用（需額外安裝 uvicorn、fastapi）
+
+---
+
 ## 授權
 
 MIT License - Copyright (c) 2026 Chi-Hsien Lin

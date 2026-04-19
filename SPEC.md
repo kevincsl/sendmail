@@ -8,7 +8,7 @@
 
 ## 2. 使用方式
 
-支援三種模式：**命令列參數模式**、**JSON 設定檔模式**、**批次寄送模式**。
+支援四種模式：**命令列參數模式**、**JSON 設定檔模式**、**批次寄送模式**、**MCP 模式**。
 
 ### 2.1 命令列參數模式
 ```bash
@@ -23,6 +23,25 @@ python sendmail.py config.json
 ### 2.3 批次寄送模式
 ```bash
 python sendmail.py batch recipients.csv config.json
+```
+
+### 2.4 MCP 模式
+讓 AI 助理（Claude、Codex）透過 MCP 協定呼叫的工具模式。
+
+```bash
+python sendmail_mcp/server.py
+```
+
+Claude Code 設定 (`~/.claude/mcp-settings.json`)：
+```json
+{
+  "mcpServers": {
+    "sendmail": {
+      "command": "python",
+      "args": ["/path/to/sendmail/sendmail_mcp/server.py"]
+    }
+  }
+}
 ```
 
 ## 3. 命令列參數
@@ -106,6 +125,7 @@ CSV 欄位：
 - [x] JSON 設定檔模式
 - [x] 批次寄送（CSV + JSON）
 - [x] 範本變數替換
+- [x] MCP 模式
 
 ## 11. Git 準備
 - `.env` 檔案已加入 `.gitignore`，不會被 commit
